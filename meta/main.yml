@@ -1,0 +1,15 @@
+galaxy_info:
+  author: "Jérémy Gardais"
+  description: "Manage FlexLM daemon"
+  license: WTFPL
+  company: IPR
+  issue_tracker_url: https://git.ipr.univ-rennes1.fr/cellinfo/ansible.flexlm/issues
+  min_ansible_version: 2.4
+  platforms:
+  - name: Debian
+    versions:
+    - stretch
+  galaxy_tags:
+    - system
+    - flexlm
+    - licence
