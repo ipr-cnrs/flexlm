@@ -12,3 +12,6 @@ flexlm__lmgrd_source: 'usr/local/bin/lmgrd'
 flexlm__lmgrd_path: '/usr/local/bin/lmgrd'
 flexlm__lmutil_source: 'usr/local/bin/lmutil'
 flexlm__lmutil_path: '/usr/local/bin/lmutil'
+
+# user
+flexlm__user_name: 'flexlm'

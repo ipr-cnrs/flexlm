@@ -22,6 +22,7 @@ A role to manage Flexlm daemon.
 * **flexlm__lmgrd_path** : The place to store `lmgrd` bin [default : `/usr/local/bin/lmgrd`].
 * **flexlm__lmutil_source** : Source of the `lmutil` bin to send [default : `usr/local/bin/lmutil`].
 * **flexlm__lmutil_path** : The place to store `lmutil` bin [default : `/usr/local/bin/lmutil`].
+* **flexlm__user_name** : Username used to launch `lmgrd` [default : `flexlm`].
 
 ## Example Playbook
 
@@ -37,6 +38,7 @@ A role to manage Flexlm daemon.
 
 This role will :
 * Copy the `lmgrd` and `lmutil` binaries to the node.
+* Create a specific user to launch daemon.
 
 The `lmgrd` and `lmutil` binaries comes from [Mathworks][mathworks download url] in version **flexlm__lmgrd_version**.
 

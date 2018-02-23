@@ -13,29 +13,36 @@
 
 # }}}
 
+# user
+- name: Create flexlm user
+  user:
+    name: '{{ flexlm__user_name }}'
+    createhome: False
+    system: True
+
 # bin {{{
 - name: Add lmgrd bin
   copy:
     src: '{{ flexlm__lmgrd_source + "." + flexlm__lmgrd_version }}'
     dest: '{{ flexlm__lmgrd_path + "." + flexlm__lmgrd_version }}'
-    owner: root
-    group: root
+    owner: '{{ flexlm__user_name }}'
+    group: '{{ flexlm__user_name }}'
     mode: 0755
 
 - name: Link to the last version of lmgrd
   file:
     src: '{{ flexlm__lmgrd_path + "." + flexlm__lmgrd_version }}'
     dest: '{{ flexlm__lmgrd_path }}'
-    owner: root
-    group: root
+    owner: '{{ flexlm__user_name }}'
+    group: '{{ flexlm__user_name }}'
     state: link
 
 - name: Add lmutil bin
   copy:
     src: '{{ flexlm__lmutil_source }}'
     dest: '{{ flexlm__lmutil_path }}'
-    owner: root
-    group: root
+    owner: '{{ flexlm__user_name }}'
+    group: '{{ flexlm__user_name }}'
     mode: 0755
 
 # }}}
