@@ -1,0 +1,8 @@
+---
+# defaults file for flexlm
+
+# packages
+flexlm__packages_state: 'present'
+flexlm__packages_manage: True
+flexlm__dependent_packages: [ 'lsb-core', 'unzip' ]
+

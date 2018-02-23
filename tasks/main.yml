@@ -1,0 +1,15 @@
+---
+# tasks file for flexlm
+
+# package {{{
+- name: INSTALL FlexLM packages
+  package:
+    name: '{{ item }}'
+    state: '{{ flexlm__packages_state }}'
+    install_recommends: False
+  with_flattened:
+    - '{{ flexlm__dependent_packages }}'
+  when: flexlm__packages_manage
+
+# }}}
+
