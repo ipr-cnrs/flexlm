@@ -1,0 +1,5 @@
+---
+# handlers file for flexlm
+- name: restart flexlm service
+  service: name={{ flexlm__service_name }} state=restarted
+  when: flexlm__service_manage

@@ -18,6 +18,7 @@ flexlm__user_name: 'flexlm'
 
 # service
 flexlm__service_manage: True
+flexlm__service_enabled: True
 flexlm__service_name: 'flexlm'
 flexlm__service_description: 'flexlm Licence Manager'
 flexlm__service_working_directory: '/opt/flexlm/VENDOR'
