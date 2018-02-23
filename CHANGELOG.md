@@ -3,3 +3,4 @@
 
 ### Features
 * Install FlexLM dependencies.
+* Copy `lmgrd` and `lmutil` binaries.

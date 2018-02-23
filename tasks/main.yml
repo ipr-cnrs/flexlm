@@ -13,3 +13,20 @@
 
 # }}}
 
+# bin
+- name: Add lmgrd bin
+  copy:
+    src: '{{ flexlm__lmgrd_source + "." + flexlm__lmgrd_version }}'
+    dest: '{{ flexlm__lmgrd_path + "." + flexlm__lmgrd_version }}'
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Add lmutil bin
+  copy:
+    src: '{{ flexlm__lmutil_source }}'
+    dest: '{{ flexlm__lmutil_path }}'
+    owner: root
+    group: root
+    mode: 0755
+

@@ -6,3 +6,9 @@ flexlm__packages_state: 'present'
 flexlm__packages_manage: True
 flexlm__dependent_packages: [ 'lsb-core', 'unzip' ]
 
+# bin
+flexlm__lmgrd_version: '11.14.0.1'
+flexlm__lmgrd_source: 'usr/local/bin/lmgrd'
+flexlm__lmgrd_path: '/usr/local/bin/lmgrd'
+flexlm__lmutil_source: 'usr/local/bin/lmutil'
+flexlm__lmutil_path: '/usr/local/bin/lmutil'

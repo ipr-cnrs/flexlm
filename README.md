@@ -17,6 +17,11 @@ A role to manage Flexlm daemon.
 * **flexlm__packages_state** : State of package(s) [default : `present`].
 * **flexlm__packages_manage** : If package(s) should be managed with this role [default : `True`].
 * **flexlm__dependent_packages** : List of additional packages requested as 'flexlm' dependencies [default : `lsb-core`, `unzip`]
+* **flexlm__lmgrd_version** : Version of `lmgrd` to use [default : `11.14.0.1`].
+* **flexlm__lmgrd_source** : Source of the `lmgrd` bin to send [default : `usr/local/bin/lmgrd`].
+* **flexlm__lmgrd_path** : The place to store `lmgrd` bin [default : `/usr/local/bin/lmgrd`].
+* **flexlm__lmutil_source** : Source of the `lmutil` bin to send [default : `usr/local/bin/lmutil`].
+* **flexlm__lmutil_path** : The place to store `lmutil` bin [default : `/usr/local/bin/lmutil`].
 
 ## Example Playbook
 
@@ -31,7 +36,9 @@ A role to manage Flexlm daemon.
 ## Configuration
 
 This role will :
-* Do nothing right now.
+* Copy the `lmgrd` and `lmutil` binaries to the node.
+
+The `lmgrd` and `lmutil` binaries comes from [Mathworks][mathworks download url] in version **flexlm__lmgrd_version**.
 
 ## Development
 
@@ -56,3 +63,4 @@ Jérémy Gardais
 [flexlm github]: https://github.com/ipr-cnrs/flexlm
 [wtfpl website]: http://www.wtfpl.net/about/
 [ipr website]: https://ipr.univ-rennes1.fr/
+[mathworks download url]: https://fr.mathworks.com/support/install/license_manager_files.html
