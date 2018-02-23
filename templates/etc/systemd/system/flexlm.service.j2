@@ -1,0 +1,16 @@
+# {{ ansible_managed }}
+[Unit]
+Description={{ flexlm__service_description }}
+After=network.target
+
+[Service]
+Type=simple
+User=flexlm
+WorkingDirectory={{ flexlm__service_working_directory }}
+ExecStart={{ flexlm__lmgrd_path }} -z -c licence.lic
+SuccessExitStatus=15
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

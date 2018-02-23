@@ -15,3 +15,12 @@ flexlm__lmutil_path: '/usr/local/bin/lmutil'
 
 # user
 flexlm__user_name: 'flexlm'
+
+# service
+flexlm__service_manage: True
+flexlm__service_name: 'flexlm'
+flexlm__service_description: 'flexlm Licence Manager'
+flexlm__service_working_directory: '/opt/flexlm/VENDOR'
+flexlm__service_unit_path: '/etc/systemd/system/{{ flexlm__service_name }}.service'
+flexlm__service_unit_content: 'etc/systemd/system/flexlm.service.j2'
+

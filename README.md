@@ -23,6 +23,12 @@ A role to manage Flexlm daemon.
 * **flexlm__lmutil_source** : Source of the `lmutil` bin to send [default : `usr/local/bin/lmutil`].
 * **flexlm__lmutil_path** : The place to store `lmutil` bin [default : `/usr/local/bin/lmutil`].
 * **flexlm__user_name** : Username used to launch `lmgrd` [default : `flexlm`].
+* **flexlm__service_manage** : If Licence Manager service should be managed with this role [default : `True`].
+* **flexlm__service_name** : Service name [default : `flexlm`].
+* **flexlm__service_description** : Description of the systemd unit [default : `flexlm Licence Manager`].
+* **flexlm__service_working_directory** : Working directory of the systemd unit [default : `/opt/flexlm/VENDOR`].
+* **flexlm__service_unit_path** : Systemd unit path [default : `/etc/systemd/system/{{ flexlm__service_name }}.service`].
+* **flexlm__service_unit_content** : Template used to generate the previous file [default : `etc/systemd/system/flexlm.service.j2`].
 
 ## Example Playbook
 
@@ -37,8 +43,9 @@ A role to manage Flexlm daemon.
 ## Configuration
 
 This role will :
-* Copy the `lmgrd` and `lmutil` binaries to the node.
+* Copy the `lmgrd` and `lmutil` binaries to the client.
 * Create a specific user to launch daemon.
+* Set up a systemd service. [Thanks to Kalebo instructions][kalebo instruction flexlm systemd].
 
 The `lmgrd` and `lmutil` binaries comes from [Mathworks][mathworks download url] in version **flexlm__lmgrd_version**.
 
@@ -66,3 +73,4 @@ Jérémy Gardais
 [wtfpl website]: http://www.wtfpl.net/about/
 [ipr website]: https://ipr.univ-rennes1.fr/
 [mathworks download url]: https://fr.mathworks.com/support/install/license_manager_files.html
+[kalebo instruction flexlm systemd]: https://gist.github.com/kalebo/fd39edb6c6e4ebed41f7eab2d9925ebc

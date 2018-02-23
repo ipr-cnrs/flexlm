@@ -47,3 +47,16 @@
 
 # }}}
 
+# service {{{
+
+- name: '{{ flexlm__service_name }} systemd service unit'
+  template:
+    src: '{{ flexlm__service_unit_content }}'
+    dest: '{{ flexlm__service_unit_path }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: flexlm__register_systemd_service
+  when: flexlm__service_manage
+
+# }}}
