@@ -16,6 +16,9 @@ flexlm__lmutil_path: '/usr/local/bin/lmutil'
 # user
 flexlm__user_name: 'flexlm'
 
+# licence
+flexlm__licence_file: '/opt/flexlm/VENDOR/licence.lic'
+
 # service
 flexlm__service_manage: True
 flexlm__service_enabled: True

@@ -7,3 +7,4 @@
 * Ensure to have a symlink for `lmgrd` to it's last version.
 * Create a specific user to launch `lmgrd`.
 * Set up a systemd service.
+* Possibility to set working directory and licence file in the service unit.
