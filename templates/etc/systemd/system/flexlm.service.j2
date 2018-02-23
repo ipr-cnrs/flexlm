@@ -5,7 +5,7 @@ After=network.target
 
 [Service]
 Type=simple
-User=flexlm
+User={{ flexlm__user_name }}
 WorkingDirectory={{ flexlm__service_working_directory }}
 ExecStart={{ flexlm__lmgrd_path }} -z -c licence.lic
 SuccessExitStatus=15
