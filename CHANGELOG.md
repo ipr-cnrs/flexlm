@@ -1,5 +1,5 @@
 
-## v1.X
+## v1.0
 
 ### Features
 * Install FlexLM dependencies.
