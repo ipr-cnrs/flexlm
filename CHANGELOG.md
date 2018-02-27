@@ -6,6 +6,9 @@
 * Manage services for the lists var (flexlm__licences).
 * Allow to manage several licences on a same host (close #1).
 
+### Enhancements
+* Set a var to manage the state of the deployment by this role.
+
 ## v1.0
 
 ### Features

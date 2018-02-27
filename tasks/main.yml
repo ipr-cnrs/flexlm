@@ -1,17 +1,16 @@
 ---
+# .. vim: foldmarker=[[[,]]]:foldmethod=marker
+#
 # tasks file for flexlm
 
-# package {{{
-- name: INSTALL FlexLM packages
+# Manage required system packages [[[1
+- name: Ensure required packages are in there desired state
   package:
     name: '{{ item }}'
-    state: '{{ flexlm__packages_state }}'
+    state: '{{ "present" if (flexlm__deploy_state == "present") else "absent" }}'
     install_recommends: False
   with_flattened:
-    - '{{ flexlm__dependent_packages }}'
-  when: flexlm__packages_manage
-
-# }}}
+    - '{{ flexlm__required_packages }}'
 
 # user
 - name: Create flexlm user

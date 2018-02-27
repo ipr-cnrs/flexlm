@@ -1,10 +1,31 @@
 ---
-# defaults file for flexlm
+# .. vim: foldmarker=[[[,]]]:foldmethod=marker
 
-# packages
-flexlm__packages_state: 'present'
-flexlm__packages_manage: True
-flexlm__dependent_packages: [ 'lsb-core', 'unzip' ]
+# ipr-cnrs.flexlm default variables [[[
+# ======================================
+
+# Packages and installation [[[
+# -----------------------------
+
+# .. envvar:: flexlm__base_packages [[[
+#
+# List of base packages to install.
+flexlm__required_packages:
+  - 'lsb-core'
+                                                                   # ]]]
+# .. envvar:: flexlm__deploy_state [[[
+#
+# What is the desired state which this role should achieve? Possible options:
+#
+# ``present``
+#   Default. Ensure that flexlm is installed and configured as requested.
+#
+# ``absent``
+#   Ensure that flexlm is uninstalled and it's configuration is removed.
+#
+flexlm__deploy_state: 'present'
+                                                                   # ]]]
+                                                                   # ]]]
 
 # bin
 flexlm__lmgrd_version: '11.14.0.1'
@@ -33,3 +54,4 @@ flexlm__service_manage: True
 flexlm__service_enabled: True
 flexlm__service_unit_content: 'etc/systemd/system/flexlm.service.j2'
 
+                                                                   # ]]]
