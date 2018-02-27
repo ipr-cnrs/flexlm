@@ -47,6 +47,20 @@
 
 # }}}
 
+# VENDOR {{{
+- name: Add VENDOR DAEMON
+  copy:
+    src: '{{ item.bin_src }}'
+    dest: '{{ item.bin_path | d("/opt/" + item.name + "/bin") }}'
+    owner: '{{ flexlm__user_name }}'
+    group: '{{ flexlm__user_name }}'
+    mode: 0754
+  with_flattened:
+    - '{{ flexlm__licences }}'
+  when: (item.bin_src|d())
+
+# }}}
+
 # service {{{
 
 - name: SERVICE '{{ flexlm__service_name }}' systemd unit

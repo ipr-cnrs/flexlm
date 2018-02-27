@@ -24,6 +24,7 @@ A role to manage Flexlm daemon.
 * **flexlm__lmutil_path** : The place to store `lmutil` bin [default : `/usr/local/bin/lmutil`].
 * **flexlm__user_name** : Username used to launch `lmgrd` [default : `flexlm`].
 * **flexlm__licence_file** : Licence file to deserve [default : `/opt/flexlm/VENDOR/licence.lic`].
+* **flexlm__licences** : Lists to manage vendor daemon files [default : `[]`].
 * **flexlm__service_manage** : If Licence Manager service should be managed with this role [default : `True`].
 * **flexlm__service_enabled** : If Licence Manager service should be enable at startup [default : `True`].
 * **flexlm__service_name** : Service name [default : `flexlm`].
@@ -36,7 +37,7 @@ A role to manage Flexlm daemon.
 
 * Manage Flexlm with defaults vars :
 
-``` yml
+``` yaml
 - hosts: serverXYZ
   roles:
     - role: ipr-cnrs.flexlm
@@ -44,13 +45,28 @@ A role to manage Flexlm daemon.
 
 * Manage Flexlm to provide Intel Fortran :
 
-``` yml
+``` yaml
 - hosts: intel-lm
-  croles:
+  roles:
     - role: ipr-cnrs.flexlm
       flexlm__service_working_directory: '/opt/intel/bin'
       flexlm__licence_file: '/opt/intel/etc/license.lic'
       flexlm__service_description: 'Licence Manager for Intel Fortran'
+```
+
+* Manage Flexlm to provide Matlab Licence and vendor daemon :
+
+```yaml
+- hosts: matlab-lm
+  roles:
+    - role: ipr-cnrs.flexlm
+      flexlm__service_working_directory: '/opt/matlab/bin'
+      flexlm__licence_file: '/opt/matlab/etc/license.lic'
+      flexlm__service_description: 'Licence Manager for Matlab'
+      flexlm__licences:
+        - name: matlab
+          bin_path: '/opt/matlab/bin'
+          bin_src: '{{ inventory_dir + "/../resources/service/matlab-lm/bin/" }}'
 ```
 
 ## Configuration
@@ -59,6 +75,7 @@ This role will :
 * Copy the `lmgrd` and `lmutil` binaries to the client.
 * Create a specific user to launch daemon.
 * Set up a systemd service. [Thanks to Kalebo instructions][kalebo instruction flexlm systemd].
+* Copy vendor daemon binaries to the host if specified.
 
 The `lmgrd` and `lmutil` binaries comes from [Mathworks][mathworks download url] in version **flexlm__lmgrd_version**.
 

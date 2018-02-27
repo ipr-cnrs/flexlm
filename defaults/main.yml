@@ -19,6 +19,14 @@ flexlm__user_name: 'flexlm'
 # licence
 flexlm__licence_file: '/opt/flexlm/VENDOR/licence.lic'
 
+# Lists to manage vendor daemon.
+# flexlm_licences:
+#   - name: matlab
+#     description: 'flexlm Licence Manager for Matlab'
+#     bin_path: '/opt/matlab/bin'
+#     bin_src: '{{ inventory_dir + "/../resources/service/matlab-lm/bin/" }}'
+flexlm__licences: []
+
 # service
 flexlm__service_manage: True
 flexlm__service_enabled: True
