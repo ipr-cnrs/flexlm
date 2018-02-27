@@ -10,7 +10,7 @@ WorkingDirectory={{ item.bin_path | d("/opt/" + item.name + "/bin") }}
 ExecStart={{ flexlm__lmgrd_path }} -z -c {{ item.lic_path | d("/opt/" + item.name + "/etc/licence.lic") }}
 SuccessExitStatus=15
 Restart=always
-RestartSec=30
+RestartSec={{ item.timewait | d(60) | int }}
 
 [Install]
 WantedBy=multi-user.target

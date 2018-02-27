@@ -5,6 +5,7 @@
 * Add a way to provide vendor daemon binaries and licence file.
 * Manage services for the lists var (flexlm__licences).
 * Allow to manage several licences on a same host (close #1).
+* The **RestartSec** argument for the service can be set, cause some vendor daemon have a timewait greater than 60 seconds.
 
 ### Enhancements
 * Set a var to manage the state of the deployment by this role.

@@ -90,7 +90,8 @@ flexlm__service_unit_content: 'etc/systemd/system/flexlm.service.j2'
 #     bin_src: '{{ inventory_dir + "/../resources/service/matlab-lm/bin/" }}'
 #     lic_path: '/opt/matlab/etc/licence.lic'
 #     lic_src: '{{ inventory_dir + "/../resources/hosts/matlab-lm/opt/matlab/etc/licence.lic" }}'
-#     #service: False
+#     service: True
+#     timewait: 60
 #     ports: [ '27000', '33188' ] # not used right now
 flexlm__licences: []
 
