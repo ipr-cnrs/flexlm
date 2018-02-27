@@ -8,6 +8,7 @@
 
 ### Enhancements
 * Set a var to manage the state of the deployment by this role.
+* Ensure to remove service management if deploy state is "absent".
 
 ## v1.0
 

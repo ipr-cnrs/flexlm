@@ -3,8 +3,7 @@
 - name: restart flexlm services
   service:
     name: '{{ "flexlm-" + item.name }}'
-    state: restarted
+    state: '{{ "restarted" if (flexlm__deploy_state == "present" and (item.service | d(True)) else "stopped" }}'
   with_flattened:
     - '{{ flexlm__licences }}'
-  when: ( flexlm__service_manage and
-        ( item.service | d(True) ))
+

@@ -24,8 +24,6 @@ A role to manage Flexlm daemon.
 * **flexlm__lmutil_path** : The place to store `lmutil` bin [default : `/usr/local/bin/lmutil`].
 * **flexlm__user_name** : Username used to launch `lmgrd` [default : `flexlm`].
 * **flexlm__licences** : Lists to manage vendor daemon and licence files [default : `[]`].
-* **flexlm__service_manage** : If Licence Manager service should be managed with this role [default : `True`].
-* **flexlm__service_enabled** : If Licence Manager service should be enable at startup [default : `True`].
 * **flexlm__service_unit_content** : Template used to generate the previous file [default : `etc/systemd/system/flexlm.service.j2`].
 
 ## Example Playbook

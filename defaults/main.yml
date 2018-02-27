@@ -26,16 +26,61 @@ flexlm__required_packages:
 flexlm__deploy_state: 'present'
                                                                    # ]]]
                                                                    # ]]]
+# Server configuration [[[
+# ------------------------
 
-# bin
+# .. envvar:: flexlm__lmgrd_version [[[
+#
+# Specifies the version of ``lmgrd`` daemon.
+# Use to differentiate lmgrd on multiple versions in case of incompatibility with a vendor daemon binary.
+#
+# A symlink will be create to ``lmgrd`` daemon to have a simpler name.
+#
 flexlm__lmgrd_version: '11.14.0.1'
-flexlm__lmgrd_source: 'usr/local/bin/lmgrd'
+
+                                                                   # ]]]
+# .. envvar:: flexlm__lmgrd_path [[[
+#
+# Path to store ``lmgrd`` daemon.
 flexlm__lmgrd_path: '/usr/local/bin/lmgrd'
-flexlm__lmutil_source: 'usr/local/bin/lmutil'
+
+                                                                   # ]]]
+# .. envvar:: flexlm__lmgrd_source [[[
+#
+# Path where ``lmgrd`` daemon source is stored.
+flexlm__lmgrd_source: 'usr/local/bin/lmgrd'
+
+                                                                   # ]]]
+# .. envvar:: flexlm__lmutil_path [[[
+#
+# Path to store ``lmutil`` daemon.
 flexlm__lmutil_path: '/usr/local/bin/lmutil'
 
-# user
+                                                                   # ]]]
+# .. envvar:: flexlm__lmutil_source [[[
+#
+# Path where ``lmutil`` daemon source is stored.
+flexlm__lmutil_source: 'usr/local/bin/lmutil'
+
+                                                                   # ]]]
+# .. envvar:: flexlm__user_name [[[
+#
+# The user under which FlexLM daemons are running during normal operation.
 flexlm__user_name: 'flexlm'
+
+                                                                   # ]]]
+# .. envvar:: apache__service_name [[[
+#
+# The name of the Apache service.
+flexlm__service_manage: True
+
+                                                                   # ]]]
+                                                                   # ]]]
+
+# service
+flexlm__service_enabled: True
+flexlm__service_unit_content: 'etc/systemd/system/flexlm.service.j2'
+
 
 # Lists to manage vendor daemon and licence files.
 # flexlm_licences:
@@ -48,10 +93,5 @@ flexlm__user_name: 'flexlm'
 #     #service: False
 #     ports: [ '27000', '33188' ] # not used right now
 flexlm__licences: []
-
-# service
-flexlm__service_manage: True
-flexlm__service_enabled: True
-flexlm__service_unit_content: 'etc/systemd/system/flexlm.service.j2'
 
                                                                    # ]]]

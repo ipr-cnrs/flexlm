@@ -19,7 +19,7 @@
     createhome: False
     system: True
 
-# bin {{{
+# lmgrd and lmutil binaries [[[1
 - name: Add lmgrd bin
   copy:
     src: '{{ flexlm__lmgrd_source + "." + flexlm__lmgrd_version }}'
@@ -44,9 +44,7 @@
     group: '{{ flexlm__user_name }}'
     mode: 0755
 
-# }}}
-
-# VENDOR and licence {{{
+# VENDOR and licence [[[1
 - name: Add VENDOR DAEMON
   copy:
     src: '{{ item.bin_src }}'
@@ -71,9 +69,7 @@
   when: (item.lic_src|d())
   notify: ['restart flexlm services']
 
-# }}}
-
-# service {{{
+# Manage services [[[1
 
 - name: Add systemd unit
   template:
@@ -82,27 +78,34 @@
     owner: 'root'
     group: 'root'
     mode: '0644'
-  register: flexlm__register_systemd_service
+  register: flexlm__register_service
   notify: ['restart flexlm services']
   with_flattened:
     - '{{ flexlm__licences }}'
-  when: ( flexlm__service_manage and
+  when: ( (flexlm__deploy_state == "present") and
         ( item.service | d(True) ))
+
+- name: Purge systemd unit
+  file:
+    dest: '{{ "/etc/systemd/system/flexlm-" + item.name + ".service" }}'
+    state: absent
+  register: flexlm__register_service
+  notify: ['restart flexlm services']
+  with_flattened:
+    - '{{ flexlm__licences }}'
+  when: ( (flexlm__deploy_state == "absent") or
+        not ( item.service | d(True) | bool ))
 
 - name: Reload systemd daemons
   command: systemctl daemon-reload
   notify: ['restart flexlm services']
-  when: (flexlm__service_manage and
-         flexlm__register_systemd_service|changed)
+  when: ( flexlm__register_service|changed )
 
-- name: SERVICE manage services
+- name: Manage services
   service:
     name: '{{ "flexlm-" + item.name }}'
-    state: started
-    enabled: '{{ flexlm__service_enabled }}'
+    state: '{{ "started" if (flexlm__deploy_state == "present" and (item.service | d(True)) else "stopped" }}'
+    enabled: '{{ item.service | d(True) | bool }}'
   with_flattened:
     - '{{ flexlm__licences }}'
-  when: ( flexlm__service_manage and
-        ( item.service | d(True) ))
 
-# }}}
