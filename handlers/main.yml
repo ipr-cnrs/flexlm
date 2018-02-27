@@ -4,6 +4,7 @@
   service:
     name: '{{ "flexlm-" + item.name }}'
     state: '{{ "restarted" if (flexlm__deploy_state == "present" and (item.service | d(True)) else "stopped" }}'
+    enabled: '{{ item.service | d(True) | bool }}'
   with_flattened:
     - '{{ flexlm__licences }}'
 

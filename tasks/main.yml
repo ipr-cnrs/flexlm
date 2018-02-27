@@ -79,7 +79,6 @@
     group: 'root'
     mode: '0644'
   register: flexlm__register_service
-  notify: ['restart flexlm services']
   with_flattened:
     - '{{ flexlm__licences }}'
   when: ( (flexlm__deploy_state == "present") and
@@ -90,7 +89,6 @@
     dest: '{{ "/etc/systemd/system/flexlm-" + item.name + ".service" }}'
     state: absent
   register: flexlm__register_service
-  notify: ['restart flexlm services']
   with_flattened:
     - '{{ flexlm__licences }}'
   when: ( (flexlm__deploy_state == "absent") or
@@ -100,12 +98,4 @@
   command: systemctl daemon-reload
   notify: ['restart flexlm services']
   when: ( flexlm__register_service|changed )
-
-- name: Manage services
-  service:
-    name: '{{ "flexlm-" + item.name }}'
-    state: '{{ "started" if (flexlm__deploy_state == "present" and (item.service | d(True)) else "stopped" }}'
-    enabled: '{{ item.service | d(True) | bool }}'
-  with_flattened:
-    - '{{ flexlm__licences }}'
 
