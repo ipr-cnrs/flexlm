@@ -24,7 +24,7 @@ A role to manage Flexlm daemon.
 * **flexlm__lmutil_path** : The place to store `lmutil` bin [default : `/usr/local/bin/lmutil`].
 * **flexlm__user_name** : Username used to launch `lmgrd` [default : `flexlm`].
 * **flexlm__licence_file** : Licence file to deserve [default : `/opt/flexlm/VENDOR/licence.lic`].
-* **flexlm__licences** : Lists to manage vendor daemon files [default : `[]`].
+* **flexlm__licences** : Lists to manage vendor daemon and licence files [default : `[]`].
 * **flexlm__service_manage** : If Licence Manager service should be managed with this role [default : `True`].
 * **flexlm__service_enabled** : If Licence Manager service should be enable at startup [default : `True`].
 * **flexlm__service_name** : Service name [default : `flexlm`].
@@ -67,6 +67,8 @@ A role to manage Flexlm daemon.
         - name: matlab
           bin_path: '/opt/matlab/bin'
           bin_src: '{{ inventory_dir + "/../resources/service/matlab-lm/bin/" }}'
+          lic_path: '/opt/matlab/etc/licence.lic'                                                # need to be a file
+          lic_src: '{{ inventory_dir + "/../resources/host/matlab-lm.domain/etc/licence.lic" }}' # need to be a file
 ```
 
 ## Configuration
@@ -76,6 +78,7 @@ This role will :
 * Create a specific user to launch daemon.
 * Set up a systemd service. [Thanks to Kalebo instructions][kalebo instruction flexlm systemd].
 * Copy vendor daemon binaries to the host if specified.
+* Copy licence file to the host if specified.
 
 The `lmgrd` and `lmutil` binaries comes from [Mathworks][mathworks download url] in version **flexlm__lmgrd_version**.
 

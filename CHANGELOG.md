@@ -2,7 +2,7 @@
 ## v1.x
 
 ### Features
-* Add a way to provide vendor daemon for a licence.
+* Add a way to provide vendor daemon binaries and licence file.
 
 ## v1.0
 

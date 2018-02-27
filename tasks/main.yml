@@ -47,7 +47,7 @@
 
 # }}}
 
-# VENDOR {{{
+# VENDOR and licence {{{
 - name: Add VENDOR DAEMON
   copy:
     src: '{{ item.bin_src }}'
@@ -58,6 +58,17 @@
   with_flattened:
     - '{{ flexlm__licences }}'
   when: (item.bin_src|d())
+
+- name: Add licence file
+  copy:
+    src: '{{ (item.lic_src | dirname) + "/" }}' # Need a final "/"
+    dest: '{{ (item.lic_path | d("/opt/" + item.name + "/etc/licence.lic")) | dirname }}'
+    owner: '{{ flexlm__user_name }}'
+    group: '{{ flexlm__user_name }}'
+    mode: 0640
+  with_flattened:
+    - '{{ flexlm__licences }}'
+  when: (item.lic_src|d())
 
 # }}}
 
