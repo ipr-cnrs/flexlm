@@ -4,9 +4,10 @@
 2. [Role Variables](#role-variables)
 3. [Example Playbook](#example-playbook)
 4. [Configuration](#configuration)
-5. [Development](#development)
-6. [License](#license)
-7. [Author Information](#author-information)
+5. [Known Issues](#known-issues)
+6. [Development](#development)
+7. [License](#license)
+8. [Author Information](#author-information)
 
 ## Overview
 
@@ -27,10 +28,6 @@ A role to manage Flexlm daemon.
 * **flexlm__licences** : Lists to manage vendor daemon and licence files [default : `[]`].
 * **flexlm__service_manage** : If Licence Manager service should be managed with this role [default : `True`].
 * **flexlm__service_enabled** : If Licence Manager service should be enable at startup [default : `True`].
-* **flexlm__service_name** : Service name [default : `flexlm`].
-* **flexlm__service_description** : Description of the systemd unit [default : `flexlm Licence Manager`].
-* **flexlm__service_working_directory** : Working directory of the systemd unit [default : `/opt/flexlm/VENDOR`].
-* **flexlm__service_unit_path** : Systemd unit path [default : `/etc/systemd/system/{{ flexlm__service_name }}.service`].
 * **flexlm__service_unit_content** : Template used to generate the previous file [default : `etc/systemd/system/flexlm.service.j2`].
 
 ## Example Playbook
@@ -43,28 +40,28 @@ A role to manage Flexlm daemon.
     - role: ipr-cnrs.flexlm
 ```
 
-* Manage Flexlm to provide Intel Fortran :
+* Manage Flexlm to provide Intel Fortran (without binaries) :
 
 ``` yaml
 - hosts: intel-lm
   roles:
     - role: ipr-cnrs.flexlm
-      flexlm__service_working_directory: '/opt/intel/bin'
-      flexlm__licence_file: '/opt/intel/etc/license.lic'
-      flexlm__service_description: 'Licence Manager for Intel Fortran'
+      flexlm__licences:
+        - name: intel
+          description: 'flexlm Licence Manager for Matlab'
+          bin_path: '/opt/intel/bin'
+          lic_path: '/opt/matlab/etc/licence.lic'          # need to be a file
 ```
 
-* Manage Flexlm to provide Matlab Licence and vendor daemon :
+* Manage Flexlm to provide Matlab Licence and vendor daemon binaries :
 
 ```yaml
 - hosts: matlab-lm
   roles:
     - role: ipr-cnrs.flexlm
-      flexlm__service_working_directory: '/opt/matlab/bin'
-      flexlm__licence_file: '/opt/matlab/etc/license.lic'
-      flexlm__service_description: 'Licence Manager for Matlab'
       flexlm__licences:
         - name: matlab
+          description: 'flexlm Licence Manager for Matlab'
           bin_path: '/opt/matlab/bin'
           bin_src: '{{ inventory_dir + "/../resources/service/matlab-lm/bin/" }}'
           lic_path: '/opt/matlab/etc/licence.lic'                                                # need to be a file
@@ -76,11 +73,15 @@ A role to manage Flexlm daemon.
 This role will :
 * Copy the `lmgrd` and `lmutil` binaries to the client.
 * Create a specific user to launch daemon.
-* Set up a systemd service. [Thanks to Kalebo instructions][kalebo instruction flexlm systemd].
-* Copy vendor daemon binaries to the host if specified.
-* Copy licence file to the host if specified.
+* Set up a systemd service (flexlm-NAME). [Thanks to Kalebo instructions][kalebo instruction flexlm systemd].
+* Copy vendor daemon binaries to the host if source is specified.
+* Copy licence file to the host if source is specified.
 
 The `lmgrd` and `lmutil` binaries comes from [Mathworks][mathworks download url] in version **flexlm__lmgrd_version**.
+
+## Known Issues
+
+* If a value of one licence change in **flexlm__licences** var, all services will be restarted.
 
 ## Development
 

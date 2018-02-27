@@ -16,9 +16,6 @@ flexlm__lmutil_path: '/usr/local/bin/lmutil'
 # user
 flexlm__user_name: 'flexlm'
 
-# licence
-flexlm__licence_file: '/opt/flexlm/VENDOR/licence.lic'
-
 # Lists to manage vendor daemon and licence files.
 # flexlm_licences:
 #   - name: matlab
@@ -27,14 +24,12 @@ flexlm__licence_file: '/opt/flexlm/VENDOR/licence.lic'
 #     bin_src: '{{ inventory_dir + "/../resources/service/matlab-lm/bin/" }}'
 #     lic_path: '/opt/matlab/etc/licence.lic'
 #     lic_src: '{{ inventory_dir + "/../resources/hosts/matlab-lm/opt/matlab/etc/licence.lic" }}'
+#     #service: False
+#     ports: [ '27000', '33188' ] # not used right now
 flexlm__licences: []
 
 # service
 flexlm__service_manage: True
 flexlm__service_enabled: True
-flexlm__service_name: 'flexlm'
-flexlm__service_description: 'flexlm Licence Manager'
-flexlm__service_working_directory: '/opt/flexlm/VENDOR'
-flexlm__service_unit_path: '/etc/systemd/system/{{ flexlm__service_name }}.service'
 flexlm__service_unit_content: 'etc/systemd/system/flexlm.service.j2'
 

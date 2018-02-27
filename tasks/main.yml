@@ -58,6 +58,7 @@
   with_flattened:
     - '{{ flexlm__licences }}'
   when: (item.bin_src|d())
+  notify: ['restart flexlm services']
 
 - name: Add licence file
   copy:
@@ -69,33 +70,40 @@
   with_flattened:
     - '{{ flexlm__licences }}'
   when: (item.lic_src|d())
+  notify: ['restart flexlm services']
 
 # }}}
 
 # service {{{
 
-- name: SERVICE '{{ flexlm__service_name }}' systemd unit
+- name: Add systemd unit
   template:
     src: '{{ flexlm__service_unit_content }}'
-    dest: '{{ flexlm__service_unit_path }}'
+    dest: '{{ "/etc/systemd/system/flexlm-" + item.name + ".service" }}'
     owner: 'root'
     group: 'root'
     mode: '0644'
   register: flexlm__register_systemd_service
-  notify: ['restart flexlm service']
-  when: flexlm__service_manage
+  notify: ['restart flexlm services']
+  with_flattened:
+    - '{{ flexlm__licences }}'
+  when: ( flexlm__service_manage and
+        ( item.service | d(True) ))
 
 - name: Reload systemd daemons
   command: systemctl daemon-reload
-  notify: ['restart flexlm service']
+  notify: ['restart flexlm services']
   when: (flexlm__service_manage and
          flexlm__register_systemd_service|changed)
 
-- name: SERVICE manage '{{ flexlm__service_name }}'
+- name: SERVICE manage services
   service:
-    name: '{{ flexlm__service_name }}'
+    name: '{{ "flexlm-" + item.name }}'
     state: started
     enabled: '{{ flexlm__service_enabled }}'
-  when: flexlm__service_manage
+  with_flattened:
+    - '{{ flexlm__licences }}'
+  when: ( flexlm__service_manage and
+        ( item.service | d(True) ))
 
 # }}}

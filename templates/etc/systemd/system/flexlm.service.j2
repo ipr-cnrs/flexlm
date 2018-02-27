@@ -1,13 +1,13 @@
 # {{ ansible_managed }}
 [Unit]
-Description={{ flexlm__service_description }}
+Description={{ item.description | d("flexlm Licence Manager for " + item.name) }}
 After=network.target
 
 [Service]
 Type=simple
 User={{ flexlm__user_name }}
-WorkingDirectory={{ flexlm__service_working_directory }}
-ExecStart={{ flexlm__lmgrd_path }} -z -c {{ flexlm__licence_file }}
+WorkingDirectory={{ item.bin_path | d("/opt/" + item.name + "/bin") }}
+ExecStart={{ flexlm__lmgrd_path }} -z -c {{ item.lic_path | d("/opt/" + item.name + "/etc/licence.lic") }}
 SuccessExitStatus=15
 Restart=always
 RestartSec=30

@@ -3,6 +3,8 @@
 
 ### Features
 * Add a way to provide vendor daemon binaries and licence file.
+* Manage services for the lists var (flexlm__licences).
+* Allow to manage several licences on a same host (close #1).
 
 ## v1.0
 

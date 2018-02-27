@@ -1,5 +1,10 @@
 ---
 # handlers file for flexlm
-- name: restart flexlm service
-  service: name={{ flexlm__service_name }} state=restarted
-  when: flexlm__service_manage
+- name: restart flexlm services
+  service:
+    name: '{{ "flexlm-" + item.name }}'
+    state: restarted
+  with_flattened:
+    - '{{ flexlm__licences }}'
+  when: ( flexlm__service_manage and
+        ( item.service | d(True) ))
