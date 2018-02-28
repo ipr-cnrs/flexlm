@@ -64,6 +64,7 @@ This role will :
 * Set up a systemd service (flexlm-item.name). [Thanks to Kalebo instructions][kalebo instruction flexlm systemd].
 * Copy vendor daemon binaries to the host if source is specified.
 * Copy licence file to the host if source is specified.
+* Create a symlink (/usr/tmp) to /tmp to avoid error.
 
 The `lmgrd` and `lmutil` binaries comes from [Mathworks][mathworks download url] in version **flexlm__lmgrd_version**.
 

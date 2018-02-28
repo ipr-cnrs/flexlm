@@ -19,6 +19,13 @@
     createhome: False
     system: True
 
+# Create a symlink for /tmp [[[1
+- name: Symlink /usr/tmp
+  file:
+    src: /tmp
+    dest: /usr/tmp
+    state: link
+
 # lmgrd and lmutil binaries [[[1
 - name: Add lmgrd bin
   copy:

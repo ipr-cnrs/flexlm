@@ -1,8 +1,10 @@
 
 ## v2.x
 
+
 ### Fixes
 * Add a missing ")" in the handler.
+* Create a symlink (/usr/tmp) to /tmp to avoid error (fix #2).
 
 ## v2.0
 
