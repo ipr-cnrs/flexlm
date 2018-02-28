@@ -99,3 +99,11 @@
   notify: ['restart flexlm services']
   when: ( flexlm__register_service|changed )
 
+- name: Manage flexlm services
+  service:
+    name: '{{ "flexlm-" + item.name }}'
+    state: '{{ "started" if (flexlm__deploy_state == "present" and (item.service | d(True) | bool)) else "stopped" }}'
+    enabled: '{{ item.service | d(True) | bool }}'
+  with_flattened:
+    - '{{ flexlm__licences }}'
+
