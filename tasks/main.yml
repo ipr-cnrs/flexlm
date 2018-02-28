@@ -84,16 +84,6 @@
   when: ( (flexlm__deploy_state == "present") and
         ( item.service | d(True) ))
 
-- name: Purge systemd unit
-  file:
-    dest: '{{ "/etc/systemd/system/flexlm-" + item.name + ".service" }}'
-    state: absent
-  register: flexlm__register_service
-  with_flattened:
-    - '{{ flexlm__licences }}'
-  when: ( (flexlm__deploy_state == "absent") or
-        not ( item.service | d(True) | bool ))
-
 - name: Reload systemd daemons
   command: systemctl daemon-reload
   notify: ['restart flexlm services']
