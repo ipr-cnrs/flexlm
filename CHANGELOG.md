@@ -1,4 +1,9 @@
 
+## v2.x
+
+### Fixes
+* Add a missing ")" in the handler.
+
 ## v2.0
 
 ### Features
