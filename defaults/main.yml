@@ -75,24 +75,53 @@ flexlm__user_name: 'flexlm'
 flexlm__service_manage: True
 
                                                                    # ]]]
-                                                                   # ]]]
-
-# service
-flexlm__service_enabled: True
+# .. envvar:: flexlm__service_unit_content [[[
+#
+# Template used to provide systemd unit for ``flexlm-...`` services.
 flexlm__service_unit_content: 'etc/systemd/system/flexlm.service.j2'
 
+                                                                   # ]]]
+                                                                   # ]]]
+# Licence and Vendor bin [[[
+# ------------------------
 
+# .. envvar:: flexlm__licences [[[
+#
 # Lists to manage vendor daemon and licence files.
-# flexlm_licences:
-#   - name: matlab
-#     description: 'flexlm Licence Manager for Matlab'
-#     bin_path: '/opt/matlab/bin'
-#     bin_src: '{{ inventory_dir + "/../resources/service/matlab-lm/bin/" }}'
-#     lic_path: '/opt/matlab/etc/licence.lic'
-#     lic_src: '{{ inventory_dir + "/../resources/hosts/matlab-lm/opt/matlab/etc/licence.lic" }}'
-#     service: True
-#     timewait: 60
-#     ports: [ '27000', '33188' ] # not used right now
+#
+# ``item.name``
+#   Give a short name for the software licence. Avoid whitespace and special
+#   caracter cause this var will also be used to name the service.
+# ``item.description``
+#   Optional. Here you can give a long description of the licence. Also used as
+#   service's description.
+# ``item.bin_path``
+#   Optional. Specify asbolute path of the target directory on the remote host
+#   to store vendor daemon binaries. Also used as working directory for the service.
+#   [Default : ``/opt/item.name/bin``].
+# ``bin_src``
+#   Optional. Path from your controller used as source directory to provide the
+#   vendor daemon directory on the host. Should be a directory and don't omit
+#   the final **/**.
+# ``lic_path``
+#   Optional. Specify absolut path of the target licence file on the remote
+#   host. Also used as argument of the start command for the service.
+#   [Default : ``/opt/item.name/etc/licence.lic``].
+# ``lic_src``
+#   Optional. Path from your controller used as source file to provide the licence
+#   file on the host. Should be a file, not a directory.
+# ``service``
+#   Optional. If the service should be started and enabled.
+#   [Default : ``True``].
+# ``timewait``
+#   Optional. The time (in second) to wait before trying to restart the service
+#   after an error. I recommend at least 60 seconds because some vendor daemon
+#   keep a connection active even few seconds after the stop.
+#   [Default : ``60``].
+# ``ports``
+#   The list of ports used by this licence.
+#   Not used right now.
 flexlm__licences: []
 
+                                                                   # ]]]
                                                                    # ]]]

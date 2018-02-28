@@ -1,5 +1,5 @@
 
-## v1.x
+## v2.0
 
 ### Features
 * Add a way to provide vendor daemon binaries and licence file.
@@ -10,6 +10,7 @@
 ### Enhancements
 * Set a var to manage the state of the deployment by this role.
 * Ensure to stop and disable services if deploy state is "absent".
+* Add more informations about flexlm__licences var.
 
 ## v1.0
 

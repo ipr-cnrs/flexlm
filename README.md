@@ -11,7 +11,7 @@
 
 ## Overview
 
-A role to manage Flexlm daemon.
+A role to manage Flexlm daemon and licence/binaries files.
 
 ## Role Variables
 
@@ -23,8 +23,8 @@ A role to manage Flexlm daemon.
 * **flexlm__lmutil_source** : Source of the `lmutil` bin to send [default : `usr/local/bin/lmutil`].
 * **flexlm__lmutil_path** : The place to store `lmutil` bin [default : `/usr/local/bin/lmutil`].
 * **flexlm__user_name** : Username used to launch `lmgrd` [default : `flexlm`].
-* **flexlm__licences** : Lists to manage vendor daemon and licence files [default : `[]`].
 * **flexlm__service_unit_content** : Template used to generate the previous file [default : `etc/systemd/system/flexlm.service.j2`].
+* **flexlm__licences** : Lists to manage vendor daemon and licence files [default : `[]`].
 
 ## Example Playbook
 
@@ -61,7 +61,7 @@ A role to manage Flexlm daemon.
 This role will :
 * Copy the `lmgrd` and `lmutil` binaries to the client.
 * Create a specific user to launch daemon.
-* Set up a systemd service (flexlm-NAME). [Thanks to Kalebo instructions][kalebo instruction flexlm systemd].
+* Set up a systemd service (flexlm-item.name). [Thanks to Kalebo instructions][kalebo instruction flexlm systemd].
 * Copy vendor daemon binaries to the host if source is specified.
 * Copy licence file to the host if source is specified.
 
