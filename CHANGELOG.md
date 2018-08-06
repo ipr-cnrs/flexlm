@@ -1,7 +1,8 @@
-## v2.X
+## v2.1.1
 
 ### Fixes
 * Fix some warnings from ansible-lint.
+* Set empty dependencies line to fix Galaxy warning.
 
 ## v2.1
 

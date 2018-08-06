@@ -1,3 +1,7 @@
+---
+
+dependencies: []
+
 galaxy_info:
   author: "Jérémy Gardais"
   description: "Manage FlexLM daemon"
