@@ -1,6 +1,9 @@
+## v2.X
 
-## v2.x
+### Fixes
+* Fix some warnings from ansible-lint.
 
+## v2.1
 
 ### Fixes
 * Add a missing ")" in the handler.

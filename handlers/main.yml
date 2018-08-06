@@ -7,4 +7,3 @@
     enabled: '{{ item.service | d(True) | bool }}'
   with_flattened:
     - '{{ flexlm__licences }}'
-
