@@ -7,3 +7,7 @@
     enabled: '{{ item.service | d(True) | bool }}'
   with_flattened:
     - '{{ flexlm__licences }}'
+
+- name: systemd daemon reload
+  systemd:
+    daemon_reload: True

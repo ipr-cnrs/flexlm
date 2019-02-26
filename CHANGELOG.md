@@ -2,6 +2,7 @@
 
 * Fix E405 Remote package tasks should have a retry.
 * Fix E303 systemctl used in place of systemd module.
+* Fix E503 Tasks that run when changed should likely be handlers. Daemon_reload moved to handlers file.
 
 ## v2.1.1
 
