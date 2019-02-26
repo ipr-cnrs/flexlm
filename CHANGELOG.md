@@ -1,6 +1,7 @@
 ## v2.1.2
 
 * Fix E405 Remote package tasks should have a retry.
+* Fix E303 systemctl used in place of systemd module.
 
 ## v2.1.1
 
