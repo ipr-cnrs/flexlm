@@ -11,6 +11,8 @@
     install_recommends: False
   with_flattened:
     - '{{ flexlm__required_packages }}'
+  register: flexlm_pkg_result
+  until: flexlm_pkg_result is success
 
 # user
 - name: Create flexlm user
