@@ -10,7 +10,7 @@
     state: '{{ "present" if (flexlm__deploy_state == "present") else "absent" }}'
     install_recommends: False
   with_flattened:
-    - '{{ flexlm__required_packages }}'
+    - '{{ flexlm__required_packages | to_nice_json }}'
   register: flexlm_pkg_result
   until: flexlm_pkg_result is success
 
