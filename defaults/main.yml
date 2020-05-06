@@ -10,8 +10,7 @@
 # .. envvar:: flexlm__base_packages [[[
 #
 # List of base packages to install.
-flexlm__required_packages:
-  - 'lsb-core'
+flexlm__required_packages: []
                                                                    # ]]]
 # .. envvar:: flexlm__deploy_state [[[
 #

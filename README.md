@@ -15,7 +15,7 @@ A role to manage Flexlm daemon and licence/binaries files.
 
 ## Role Variables
 
-* **flexlm__required_packages** : List of required packages requested as 'flexlm' dependencies [default : `lsb-core`]
+* **flexlm__required_packages** : List of required packages requested as 'flexlm' dependencies [default : `[]`]
 * **flexlm__deploy_state** : The desired state this role should achieve. [default : `present`].
 * **flexlm__lmgrd_version** : Version of `lmgrd` to use [default : `11.16.2.1`].
 * **flexlm__lmgrd_source** : Source of the `lmgrd` bin to send [default : `usr/local/bin/lmgrd`].

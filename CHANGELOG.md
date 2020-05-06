@@ -2,6 +2,7 @@
 
 ### Enhancements
 * Ensure to install requirements on Debian Stretch.
+* Empty requirements packages by default cause `lsb-compat` is no longer available on Debian Buster.
 
 ## v2.1.4
 ### Enhancements
