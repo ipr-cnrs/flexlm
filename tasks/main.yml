@@ -3,6 +3,18 @@
 #
 # tasks file for flexlm
 
+# Load vars [[[1
+- name: Load specific OS vars
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_distribution|lower }}-{{ ansible_distribution_release }}.yml"
+        - "{{ ansible_distribution|lower }}-{{ ansible_distribution_version }}.yml"
+        - "{{ ansible_distribution_release }}.yml"
+        - "{{ ansible_distribution|lower }}.yml"
+        - "{{ ansible_os_family|lower }}.yml"
+      skip: true
+
 # Manage required system packages [[[1
 - name: Ensure required packages are in there desired state
   package:

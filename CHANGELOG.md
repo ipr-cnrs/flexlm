@@ -1,3 +1,8 @@
+## v2.2.0
+
+### Enhancements
+* Ensure to install requirements on Debian Stretch.
+
 ## v2.1.4
 ### Enhancements
 * Upgrade lmgrd and lmutil daemon to version 11.16.2.1.
