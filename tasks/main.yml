@@ -40,6 +40,16 @@
     dest: /usr/tmp
     state: link
 
+# Create a symlink for libs [[[1
+- name: Symlinks to /lib64/ld-linux-x86-64.so.2
+  file:
+    src: /lib64/ld-linux-x86-64.so.2
+    dest: '{{ item }}'
+    state: link
+  with_items:
+    - /lib64/ld-lsb-x86-64.so.2
+    - /lib64/ld-lsb-x86-64.so.3
+
 # lmgrd and lmutil binaries [[[1
 - name: Add lmgrd bin
   copy:

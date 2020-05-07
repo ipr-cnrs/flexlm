@@ -65,6 +65,7 @@ This role will :
 * Copy vendor daemon binaries to the host if source is specified.
 * Copy licence file to the host if source is specified.
 * Create a symlink (/usr/tmp) to /tmp to avoid error.
+* Create a symlinks to ld-linux librairies.
 
 The `lmgrd` and `lmutil` binaries comes from [Mathworks][mathworks download url] in version **flexlm__lmgrd_version**.
 
