@@ -1,3 +1,7 @@
+## v2.3.1
+### Enhancements
+* Works with Debian Bullseye.
+
 ## v2.3.0
 ### Enhancements
 * Upgrade lmgrd and lmutil daemon to version 11.18.1.

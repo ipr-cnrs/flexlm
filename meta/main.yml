@@ -12,8 +12,8 @@ galaxy_info:
   platforms:
   - name: Debian
     versions:
+    - bullseye
     - buster
-    - stretch
   galaxy_tags:
     - system
     - flexlm
