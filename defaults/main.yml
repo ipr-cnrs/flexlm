@@ -35,7 +35,7 @@ flexlm__deploy_state: 'present'
 #
 # A symlink will be create to ``lmgrd`` daemon to have a simpler name.
 #
-flexlm__lmgrd_version: '11.16.2.1'
+flexlm__lmgrd_version: '11.18.1'
 
                                                                    # ]]]
 # .. envvar:: flexlm__lmgrd_path [[[
