@@ -1,6 +1,7 @@
 ## v2.3.0
 ### Enhancements
 * Upgrade lmgrd and lmutil daemon to version 11.18.1.
+* Remove old 11.14.0 version of lmgrd.
 
 ## v2.2.0
 
