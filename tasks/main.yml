@@ -5,7 +5,7 @@
 
 # Load vars [[[1
 - name: Load specific OS vars
-  include_vars: "{{ item }}"
+  ansible.builtin.include_vars: "{{ item }}"
   with_first_found:
     - files:
         - "{{ ansible_distribution|lower }}-{{ ansible_distribution_release }}.yml"
@@ -17,7 +17,7 @@
 
 # Manage required system packages [[[1
 - name: Ensure required packages are in there desired state
-  package:
+  ansible.builtin.package:
     name: '{{ flexlm__required_packages | flatten }}'
     state: '{{ "present" if (flexlm__deploy_state == "present") else "absent" }}'
     install_recommends: False
@@ -26,21 +26,21 @@
 
 # user
 - name: Create flexlm user
-  user:
+  ansible.builtin.user:
     name: '{{ flexlm__user_name }}'
     createhome: False
     system: True
 
 # Create a symlink for /tmp [[[1
 - name: Symlink /usr/tmp
-  file:
+  ansible.builtin.file:
     src: /tmp
     dest: /usr/tmp
     state: link
 
 # Create a symlink for libs [[[1
 - name: Symlinks to /lib64/ld-linux-x86-64.so.2
-  file:
+  ansible.builtin.file:
     src: /lib64/ld-linux-x86-64.so.2
     dest: '{{ item }}'
     state: link
@@ -50,7 +50,7 @@
 
 # lmgrd and lmutil binaries [[[1
 - name: Add lmgrd bin
-  copy:
+  ansible.builtin.copy:
     src: '{{ flexlm__lmgrd_source + "." + flexlm__lmgrd_version }}'
     dest: '{{ flexlm__lmgrd_path + "." + flexlm__lmgrd_version }}'
     owner: '{{ flexlm__user_name }}'
@@ -58,7 +58,7 @@
     mode: 0755
 
 - name: Link to the last version of lmgrd
-  file:
+  ansible.builtin.file:
     src: '{{ flexlm__lmgrd_path + "." + flexlm__lmgrd_version }}'
     dest: '{{ flexlm__lmgrd_path }}'
     owner: '{{ flexlm__user_name }}'
@@ -66,7 +66,7 @@
     state: link
 
 - name: Add lmutil bin
-  copy:
+  ansible.builtin.copy:
     src: '{{ flexlm__lmutil_source }}'
     dest: '{{ flexlm__lmutil_path }}'
     owner: '{{ flexlm__user_name }}'
@@ -75,7 +75,7 @@
 
 # VENDOR and licence [[[1
 - name: Add VENDOR DAEMON
-  copy:
+  ansible.builtin.copy:
     src: '{{ item.bin_src }}'
     dest: '{{ item.bin_path | d("/opt/" + item.name + "/bin") }}'
     owner: '{{ flexlm__user_name }}'
@@ -87,7 +87,7 @@
   notify: ['restart flexlm services']
 
 - name: Add licence file
-  copy:
+  ansible.builtin.copy:
     src: '{{ (item.lic_src | dirname) + "/" }}'  # Need a final "/"
     dest: '{{ (item.lic_path | d("/opt/" + item.name + "/etc/licence.lic")) | dirname }}'
     owner: '{{ flexlm__user_name }}'
@@ -101,7 +101,7 @@
 # Manage services [[[1
 
 - name: Add systemd unit
-  template:
+  ansible.builtin.template:
     src: '{{ flexlm__service_unit_content }}'
     dest: '{{ "/etc/systemd/system/flexlm-" + item.name + ".service" }}'
     owner: 'root'
@@ -114,7 +114,7 @@
   notify: ['systemd daemon reload', 'restart flexlm services']
 
 - name: Manage flexlm services
-  service:
+  ansible.builtin.service:
     name: '{{ "flexlm-" + item.name }}'
     state: '{{ "started" if (flexlm__deploy_state == "present" and (item.service | d(True) | bool)) else "stopped" }}'
     enabled: '{{ item.service | d(True) | bool }}'
